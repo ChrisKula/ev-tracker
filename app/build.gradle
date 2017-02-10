@@ -1,4 +1,26 @@
+import java.text.SimpleDateFormat
+
 apply plugin: 'com.android.application'
+
+class Version {
+    int major, minor, patch
+
+    String versionName() {
+        "$major.$minor.$patch"
+    }
+
+    int versionCode() {
+        major * 1000 + minor * 100 + patch
+    }
+}
+
+def version = new Version(
+        major: 0,
+        minor: 1,
+        patch: 0)
+
+def gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+def buildTime = new SimpleDateFormat("dd_MM_yyyy-HH:mm:ss", Locale.ENGLISH).format(new Date()).toUpperCase()
 
 android {
     compileSdkVersion 25
@@ -7,14 +29,21 @@ android {
         applicationId "com.christiankula.evtracker"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode version.versionCode()
+        versionName version.versionName()
+        buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
         }
     }
 }
