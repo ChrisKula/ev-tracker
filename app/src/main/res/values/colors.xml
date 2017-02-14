@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#D50000</color>
+    <color name="colorPrimaryDark">#b00000</color>
+    <color name="colorAccent">#455A64</color>
+
+    <color name="white">#ffffff</color>
+
+    <color name="stat_hp">#ff5959</color>
+    <color name="stat_atk">#f5ac78</color>
+    <color name="stat_def">#fae078</color>
+    <color name="stat_sp_atk">#9db7f5</color>
+    <color name="stat_sp_def">#a7db8d</color>
+    <color name="stat_spd">#fa92b2</color>
 </resources>
